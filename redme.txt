@@ -1,0 +1,53 @@
+Reqirements:
+
+As a developer, I want to hit an external API, extract game records, 
+and download categorized images, so that assets are available for offline 
+processing and UI representation.
+
+API Endpoint:
+
+https://partner-auth.dev-lab.uk/api/providers/1/games
+
+Logic:
+
+    Fetch data from the above API.
+
+    For each game record in the response:
+
+      Extract the field image_square (URL of the image).
+
+        Extract the fields name, game_code, and category.
+
+    Download each image from the image_square URL.
+
+    Save the image using the format: {name}_{game_code}.jpg
+
+    Organize images into folders based on the category field:
+
+       For example:
+      slots/Battle for Troy_11501.jpg
+
+Sample Game Record:
+
+{
+  "name": "Battle for Troy",
+  "game_code": 11501,
+  "category": "slots",
+  "description": "Embark on an epic journey in Battle of Troy where ancient riches await!...",
+  "image_square": "https://imagedelivery.net/XKWmn0SnwMGQ1FRiU5kurQ/2c11f4d7-84c8-4e76-7192-934b8e5a8400/public"
+}
+
+Acceptance Criteria:
+
+    All game records are processed without failure.
+    Images are downloaded and saved with proper naming.
+    Folder structure is organized by category.
+    Provide a sample screenshot of folder structure and downloaded images.
+
+library:
+Use requests python library to hit and download.
+os, shutil library
+
+Output: 
+slots/round/<game_name><game_code>.png
+slots/square/<game_name><game_code>.png
